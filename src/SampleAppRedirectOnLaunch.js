@@ -16,7 +16,7 @@ class SampleAppRedirectOnLaunch extends React.Component {
     return (
       <AAD.AzureAD
         clientId=""
-        graphScopes=""
+        graphScopes={[]}
         authority=""
         type={AAD.LoginTypes.Redirect}
         unauthenticatedFunction={this.redirect}
