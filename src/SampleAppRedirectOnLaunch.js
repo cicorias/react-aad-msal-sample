@@ -9,10 +9,14 @@ class SampleAppRedirectOnLaunch extends React.Component {
 
   redirect = login => {
     login();
-    return (<div />);
+    return (<div>redirected!</div>);
   };
 
   render() {
+    if (!this.props.enabled) {
+      return (<div />);
+    }
+
     return (
       <AAD.AzureAD
         clientId={process.env.REACT_APP_AAD_APP_CLIENT_ID}

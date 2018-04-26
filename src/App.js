@@ -6,13 +6,28 @@ import SampleAppRedirectOnLaunch from './SampleAppRedirectOnLaunch';
 
 class App extends Component {
   
-  state = {
-    isAuthenticated: false
+  constructor(props) {
+    super(props);
+    var redirectOnLoad = localStorage.getItem("redirectOnLoad") || false;
+    this.state ={
+      isAuthenticated: false,
+      redirectOnLoad: redirectOnLoad,
+      redirectOnLaunchEnabled: false
+    };
+
+    if (redirectOnLoad) {
+      localStorage.removeItem("redirectOnLoad");
+    }
+  }
+
+  debugInfo = (userInfo) => {
+    this.setState({isAuthenticated: true, userInfo: userInfo});
   };
 
-  debugInfo = () => {
-    this.setState({isAuthenticated:true});
-  };
+  handleCheck = () => {
+    localStorage.setItem("redirectOnLoad", !this.state.redirectOnLaunchEnabled);
+    this.setState({redirectOnLaunchEnabled: !this.state.redirectOnLaunchEnabled});
+  }
 
   render() {
     return (
@@ -24,12 +39,17 @@ class App extends Component {
         <div>
           <p>Place instructions here</p>
         </div>
+        { this.state.isAuthenticated && <div>
+          <p>You have successfully logged in! Here is your user info: </p>
+        </div>}
         { !this.state.isAuthenticated && <div>
           <div>
             <SampleAppButtonLaunch debugInfo={this.debugInfo}/>
           </div>
           <div>
-            <SampleAppRedirectOnLaunch debugInfo={this.debugInfo}/>
+            <input type="checkbox" defaultChecked={this.state.redirectOnLaunchEnabled} onChange={this.handleCheck} /> 
+            Check this box and refresh the page to redirect to a login page on page load!
+            <SampleAppRedirectOnLaunch enabled={this.state.redirectOnLoad} debugInfo={this.debugInfo}/>
           </div>
         </div>}
       </div>
