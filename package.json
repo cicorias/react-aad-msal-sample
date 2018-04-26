@@ -21,11 +21,13 @@
   ],
   "dependencies": {
     "react": "16.3.2",
-    "react-aad-msal": "^0.2.0",
+    "react-aad-msal": "^0.2.1",
     "react-dom": "16.3.2",
     "react-scripts": "1.1.4"
   },
   "scripts": {
+    "rimraf": "./node_modules/.bin/rimraf",
+    "clean": "npm cache clean --force && npm run rimraf -- node_modules build dist",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
