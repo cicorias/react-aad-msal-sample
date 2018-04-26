@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import SampleAppButtonLaunch from './SampleAppButtonLaunch';
 import SampleAppRedirectOnLaunch from './SampleAppRedirectOnLaunch';
@@ -28,19 +27,22 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to react-aad-msal-samples</h1>
         </header>
-        <div>
-          <p>Place instructions here</p>
-        </div>
-        <div>
-          <div>
+        <div className="SampleContainer">
+          <div className="SampleBox">
+            <h2 className="SampleHeader">Button Login</h2>
+            <p>This example will launch a popup dialog to allow for authentication
+              with Azure Active Directory</p>
             <SampleAppButtonLaunch />
           </div>
-          <div>
-            <input type="checkbox" defaultChecked={this.state.redirectCheckbox} onChange={this.handleCheck} /> 
-            Check this box and refresh the page to redirect to a login page on page load!
+          <div className="SampleBox">
+            <h2 className="SampleHeader">Automatic Redirect</h2>
+            <p>This example shows how you can use the AzureAD component to redirect 
+              the login screen automatically on page load. Click the checkbox below 
+              to enable the redirect and refresh your browser window.
+            </p>
+            <input type="checkbox" defaultChecked={this.state.redirectCheckbox} onChange={this.handleCheck} /> Enable redirect
             <SampleAppRedirectOnLaunch enabled={this.state.redirectOnLoad}/>
           </div>
         </div>

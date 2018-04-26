@@ -1,6 +1,16 @@
 import * as React from 'react';
 import { AzureAD, LoginType } from 'react-aad-msal';
 
+const buttonStyle = {
+    backgroundColor: "#00a1f1",
+    border: "none",
+    color: "white",
+    display: "inline-block",
+    padding: "15px",
+    fontSize: "15px",
+    cursor: "pointer",
+};
+
 class SampleAppButtonLaunch extends React.Component {
     constructor(props) {
         super(props);
@@ -14,7 +24,7 @@ class SampleAppButtonLaunch extends React.Component {
 
     unauthenticatedFunction(loginFunction) {
         return (
-            <button onClick={loginFunction}>Login with popup</button>
+            <button style={buttonStyle} onClick={loginFunction}>Login</button>
         );
     }
 
