@@ -16,8 +16,12 @@ class SampleAppRedirectOnLaunch extends React.Component {
   };
 
   redirect = login => {
-    login();
-    return (<div>Redirecting...</div>);
+    if (this.props.enabled)
+    {
+      login();
+      return (<div>Redirecting...</div>);
+    }
+    return (<div />);
   };
 
   render() {

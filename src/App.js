@@ -11,7 +11,7 @@ class App extends Component {
     var redirectOnLoad = localStorage.getItem("redirectOnLoad") || false;
     this.state ={
       redirectOnLoad: redirectOnLoad,
-      redirectOnLaunchEnabled: false
+      redirectCheckbox: false
     };
 
     if (redirectOnLoad) {
@@ -20,8 +20,8 @@ class App extends Component {
   }
 
   handleCheck = () => {
-    localStorage.setItem("redirectOnLoad", !this.state.redirectOnLaunchEnabled);
-    this.setState({redirectOnLaunchEnabled: !this.state.redirectOnLaunchEnabled});
+    localStorage.setItem("redirectOnLoad", !this.state.redirectCheckbox);
+    this.setState({redirectCheckbox: !this.state.redirectCheckbox});
   }
 
   render() {
@@ -34,11 +34,12 @@ class App extends Component {
         <div>
           <p>Place instructions here</p>
         </div>
+        <div>
           <div>
             <SampleAppButtonLaunch />
           </div>
           <div>
-            <input type="checkbox" defaultChecked={this.state.redirectOnLaunchEnabled} onChange={this.handleCheck} /> 
+            <input type="checkbox" defaultChecked={this.state.redirectCheckbox} onChange={this.handleCheck} /> 
             Check this box and refresh the page to redirect to a login page on page load!
             <SampleAppRedirectOnLaunch enabled={this.state.redirectOnLoad}/>
           </div>
