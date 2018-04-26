@@ -19,7 +19,7 @@ class SampleAppRedirectOnLaunch extends React.Component {
 
     return (
       <AzureAD
-        clientId={process.env.REACT_APP_AAD_APP_CLIENT_ID}
+        clientID={process.env.REACT_APP_AAD_APP_CLIENT_ID}
         graphScopes={[]}
         authority={process.env.REACT_APP_AUTHORITY}
         type={LoginType.Redirect}
