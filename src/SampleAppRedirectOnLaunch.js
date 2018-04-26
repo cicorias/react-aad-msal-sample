@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as AAD from 'react-aad-msal';
+import {AzureAD, LoginType} from 'react-aad-msal';
 
 class SampleAppRedirectOnLaunch extends React.Component {
 
@@ -18,15 +18,15 @@ class SampleAppRedirectOnLaunch extends React.Component {
     }
 
     return (
-      <AAD.AzureAD
+      <AzureAD
         clientId={process.env.REACT_APP_AAD_APP_CLIENT_ID}
         graphScopes={[]}
         authority={process.env.REACT_APP_AUTHORITY}
-        type={AAD.LoginType.Redirect}
+        type={LoginType.Redirect}
         unauthenticatedFunction={this.redirect}
         userInfoCallback={this.setUserInfo}>
         <div>logged in!</div>
-      </AAD.AzureAD>
+      </AzureAD>
       );
   }
 }
