@@ -10,7 +10,6 @@ class App extends Component {
     super(props);
     var redirectOnLoad = localStorage.getItem("redirectOnLoad") || false;
     this.state ={
-      isAuthenticated: false,
       redirectOnLoad: redirectOnLoad,
       redirectOnLaunchEnabled: false
     };
@@ -19,10 +18,6 @@ class App extends Component {
       localStorage.removeItem("redirectOnLoad");
     }
   }
-
-  debugInfo = (userInfo) => {
-    this.setState({isAuthenticated: true, userInfo: userInfo});
-  };
 
   handleCheck = () => {
     localStorage.setItem("redirectOnLoad", !this.state.redirectOnLaunchEnabled);
@@ -39,19 +34,15 @@ class App extends Component {
         <div>
           <p>Place instructions here</p>
         </div>
-        { this.state.isAuthenticated && <div>
-          <p>You have successfully logged in! Here is your user info: </p>
-        </div>}
-        { !this.state.isAuthenticated && <div>
           <div>
-            <SampleAppButtonLaunch debugInfo={this.debugInfo}/>
+            <SampleAppButtonLaunch />
           </div>
           <div>
             <input type="checkbox" defaultChecked={this.state.redirectOnLaunchEnabled} onChange={this.handleCheck} /> 
             Check this box and refresh the page to redirect to a login page on page load!
-            <SampleAppRedirectOnLaunch enabled={this.state.redirectOnLoad} debugInfo={this.debugInfo}/>
+            <SampleAppRedirectOnLaunch enabled={this.state.redirectOnLoad}/>
           </div>
-        </div>}
+        </div>
       </div>
     );
   }
