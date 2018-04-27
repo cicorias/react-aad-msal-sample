@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { AzureAD, LoginType } from 'react-aad-msal';
+import { basicReduxStore } from './reduxStore';
 
 const buttonStyle = {
     backgroundColor: "#00a1f1",
@@ -33,6 +34,7 @@ class SampleAppButtonLaunch extends React.Component {
     }
 
     render() {
+        console.log("REDUX", basicReduxStore.getState())
         return (
             <AzureAD
                 clientID={process.env.REACT_APP_AAD_APP_CLIENT_ID}
@@ -40,7 +42,8 @@ class SampleAppButtonLaunch extends React.Component {
                 authority={process.env.REACT_APP_AUTHORITY}
                 type={LoginType.Popup}
                 unauthenticatedFunction={this.unauthenticatedFunction}
-                userInfoCallback={this.userJustLoggedIn}>
+                userInfoCallback={this.userJustLoggedIn}
+                reduxStore={basicReduxStore}>
                 <div>
                     You're logged in!
                     <br />

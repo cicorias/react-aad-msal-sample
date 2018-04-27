@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {AzureAD, LoginType} from 'react-aad-msal';
+import { AzureAD, LoginType } from 'react-aad-msal';
 
 class SampleAppRedirectOnLaunch extends React.Component {
 
@@ -7,17 +7,16 @@ class SampleAppRedirectOnLaunch extends React.Component {
     super(props);
 
     this.state = {
-        userInfo: null
+      userInfo: null
     }
   }
-  
+
   setUserInfo = userInfo => {
-    this.setState({userInfo: userInfo});
+    this.setState({ userInfo: userInfo });
   };
 
   redirect = login => {
-    if (this.props.enabled)
-    {
+    if (this.props.enabled) {
       login();
       return (<div>Redirecting...</div>);
     }
@@ -39,7 +38,7 @@ class SampleAppRedirectOnLaunch extends React.Component {
           {this.state.userInfo}
         </div>
       </AzureAD>
-      );
+    );
   }
 }
 
